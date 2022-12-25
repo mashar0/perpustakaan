@@ -31,11 +31,11 @@ Ada Yang Bisa Saya Bantu ?
 				else: return no_bantuan
 			except: continue
 
-	def table_buku(self):
+	def table_buku(self, message):
 		self.clear()
 		no = 0
 		data_lihat_buku = lihat_buku()
-		print(f"Tersedia {len(data_lihat_buku)} Buku")
+		print(f"{message}\n\nTersedia {len(data_lihat_buku)} Buku")
 		print('='*99)
 		print(f"| {'No':<4}| {'Judul':<20} | {'Pengarang':<20} | {'Tahun Terbit':<20} | {'Jumlah Halaman':<20} |")
 		print('='*99)
@@ -46,7 +46,7 @@ Ada Yang Bisa Saya Bantu ?
 		print('='*99)
 
 	def mau_lihat_buku(self):
-		self.table_buku()
+		self.table_buku("Lihat Buku")
 		input("Enter Untuk Melanjutkan ")
 
 	def mau_tambah_buku(self):
@@ -55,7 +55,7 @@ Ada Yang Bisa Saya Bantu ?
 				self.clear()
 				print("Tambahkan Buku Baru")
 				judul = str(input(f"{'Judul':<15}: "))
-				if (len(judul) >  0): break   
+				if (len(judul.strip(" ")) > 0): break  
 				else:
 					input("Harap Masukan Judul ! ")
 					continue
@@ -64,7 +64,7 @@ Ada Yang Bisa Saya Bantu ?
 				print("Tambahkan Buku Baru")
 				print(f"{'Judul':<15}: {judul}")
 				pengarang = str(input(f"{'Pengarang':<15}: "))
-				if (len(pengarang) > 0): break 
+				if (len(pengarang.strip(" ")) > 0): break  
 				else:
 					input("Harap Masukan Nama Pengarang  ! ")
 					continue
@@ -101,7 +101,7 @@ Ada Yang Bisa Saya Bantu ?
 		while True:
 			while True:
 				data_lihat_buku = lihat_buku()
-				self.table_buku()
+				self.table_buku("Update Buku")
 				print("Input 0 Untuk Selesai\n")
 				try:
 					no_buku_yg_akan_diubah = int(input("No Buku Yang Akan Di Ubah\n> "))
@@ -127,15 +127,26 @@ Ada Yang Bisa Saya Bantu ?
 					bagian_yang_akan_di_ubah = int(input("Apa Yang Akan Di Ubah\n> "))
 					if (bagian_yang_akan_di_ubah < 1) or (bagian_yang_akan_di_ubah > 6): continue 
 					elif (bagian_yang_akan_di_ubah == 1):
-						self.clear()
-						judul_baru = str(input("Masukan Judul Baru\n> "))
-						data_judul_baru = f"{judul_baru:<250}|"
-						update_buku(no_buku=no_buku_yg_akan_diubah ,posisi=0 , data_baru=data_judul_baru)
+						while True:
+							self.clear()
+							judul_baru = str(input("Masukan Judul Baru\n> "))
+							if (len(judul_baru.strip(" ")) > 0):
+								data_judul_baru = f"{judul_baru:<250}|"
+								update_buku(no_buku=no_buku_yg_akan_diubah ,posisi=0 , data_baru=data_judul_baru)
+								break
+							else:
+								input("Harap Masukan Judul ! ")
 					elif (bagian_yang_akan_di_ubah == 2):
-						self.clear()
-						pengarang_baru = str(input("Masukan Nama Pengarang Yang Baru\n> ")) 
-						data_pengarang_baru = f"{pengarang_baru:<250}|"
-						update_buku(no_buku=no_buku_yg_akan_diubah ,posisi=251 , data_baru=data_pengarang_baru)
+						while True:
+							self.clear()
+							pengarang_baru = str(input("Masukan Nama Pengarang Yang Baru\n> ")) 
+							if (len(pengarang_baru.strip(" ")) > 0):
+								data_pengarang_baru = f"{pengarang_baru:<250}|"
+								update_buku(no_buku=no_buku_yg_akan_diubah ,posisi=251 , data_baru=data_pengarang_baru)
+								break
+							else:
+								input("Harap Masukan Nama Pengarang ! ")
+								continue
 					elif (bagian_yang_akan_di_ubah == 3):
 						while True:
 							self.clear()
@@ -166,7 +177,7 @@ Ada Yang Bisa Saya Bantu ?
 	def mau_hapus_buku(self):
 		while True:
 			data_lihat_buku = lihat_buku()
-			self.table_buku()
+			self.table_buku("Hapus Buku")
 			print("Input 0 Untuk Selesai\n")
 			try:
 				no_buku_yang_akan_di_hapus = int(input("Pilih No Buku Yang Akan Di Hapus\n> "))
