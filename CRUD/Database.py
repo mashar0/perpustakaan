@@ -1,8 +1,7 @@
 from os import rename
-
 Nama_database = "CRUD/KumpulanBuku.txt"
 
-def Initialize():
+def Initialize(): 
 	with open(Nama_database, mode="a", encoding="utf-8") as buku: buku.write("")
 
 def lihat_buku():

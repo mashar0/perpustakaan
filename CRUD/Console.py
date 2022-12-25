@@ -38,7 +38,7 @@ Ada Yang Bisa Saya Bantu ?
 		print(f"{message}\n\nTersedia {len(data_lihat_buku)} Buku")
 		print('='*99)
 		print(f"| {'No':<4}| {'Judul':<20} | {'Pengarang':<20} | {'Tahun Terbit':<20} | {'Jumlah Halaman':<20} |")
-		print('='*99)
+		print("|" + '~'*97 + "|")
 		for i in data_lihat_buku:
 			iSp = i.split("|")
 			no += 1
@@ -136,6 +136,7 @@ Ada Yang Bisa Saya Bantu ?
 								break
 							else:
 								input("Harap Masukan Judul ! ")
+								continue
 					elif (bagian_yang_akan_di_ubah == 2):
 						while True:
 							self.clear()
@@ -184,7 +185,7 @@ Ada Yang Bisa Saya Bantu ?
 				if (no_buku_yang_akan_di_hapus > len(data_lihat_buku)): continue
 				elif (no_buku_yang_akan_di_hapus == 0): break
 				else:
-					if hapus_buku(no_buku=no_buku_yang_akan_di_hapus):
+					if hapus_buku(no_buku=no_buku_yang_akan_di_hapus): 
 						input("Tidak Dapat Menghapus Buku Terakhir ! ")
 					else: continue
 			except: continue
