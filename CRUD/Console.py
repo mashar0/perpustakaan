@@ -18,9 +18,6 @@ Ada Yang Bisa Saya Bantu ?
 		self.banner = Pekerja_perpustakaan.__banner
 		self.nama = masukan_nama
 
-	def check_kosong():
-		pass
-
 	def clear(self):
 		if (platform == "linux") or (platform == "linux2"): system("clear")
 		elif (platform == "win32"): system("cls")
@@ -50,9 +47,18 @@ Ada Yang Bisa Saya Bantu ?
 			print(f"| {no:^4}| {iSp[0]:.20} | {iSp[1]:.20} | {iSp[2]:.20} | {iSp[3]:.20} |")
 		print('='*99)
 
+	def check_kosong(self, kata):
+		kata_ascii, list_kata = ascii_lowercase + ascii_uppercase, []
+		for a in kata_ascii: list_kata.append(a)
+		while True:
+			try:
+				for b in range(len(list_kata)):
+					if (kata[b] in list_kata): return True 
+					else: return False
+			except: return False
+
 	def mau_lihat_buku(self):
-		self.table_buku("Lihat Buku")
-		input("Enter Untuk Melanjutkan ")
+		self.table_buku("Lihat Buku"), input("Enter Untuk Melanjutkan ")
 
 	def mau_tambah_buku(self):
 		while True:
@@ -60,7 +66,7 @@ Ada Yang Bisa Saya Bantu ?
 				self.clear()
 				print("Tambahkan Buku Baru")
 				judul = str(input(f"{'Judul':<15}: "))
-				if (len(judul.strip(" ")) > 0): break  
+				if (self.check_kosong(judul)): break
 				else:
 					input("Harap Masukan Judul ! ")
 					continue
@@ -69,7 +75,7 @@ Ada Yang Bisa Saya Bantu ?
 				print("Tambahkan Buku Baru")
 				print(f"{'Judul':<15}: {judul}")
 				pengarang = str(input(f"{'Pengarang':<15}: "))
-				if (len(pengarang.strip(" ")) > 0): break  
+				if (self.check_kosong(pengarang)): break  
 				else:
 					input("Harap Masukan Nama Pengarang  ! ")
 					continue
@@ -127,7 +133,6 @@ Ada Yang Bisa Saya Bantu ?
 				print(f"4 . {'Halaman':<15} : {data_lihat_buku_list[3]:.30} ")
 				print("5 . Ubah Selesai")
 				print("="*21)
-
 				try:
 					bagian_yang_akan_di_ubah = int(input("Apa Yang Akan Di Ubah\n> "))
 					if (bagian_yang_akan_di_ubah < 1) or (bagian_yang_akan_di_ubah > 6): continue 
@@ -135,7 +140,7 @@ Ada Yang Bisa Saya Bantu ?
 						while True:
 							self.clear()
 							judul_baru = str(input("Masukan Judul Baru\n> "))
-							if (len(judul_baru.strip(" ")) > 0):
+							if (self.check_kosong(judul_baru)):
 								data_judul_baru = f"{judul_baru:<250}|"
 								update_buku(no_buku=no_buku_yg_akan_diubah ,posisi=0 , data_baru=data_judul_baru)
 								break
@@ -146,7 +151,7 @@ Ada Yang Bisa Saya Bantu ?
 						while True:
 							self.clear()
 							pengarang_baru = str(input("Masukan Nama Pengarang Yang Baru\n> ")) 
-							if (len(pengarang_baru.strip(" ")) > 0):
+							if (self.check_kosong(pengarang_baru)):
 								data_pengarang_baru = f"{pengarang_baru:<250}|"
 								update_buku(no_buku=no_buku_yg_akan_diubah ,posisi=251 , data_baru=data_pengarang_baru)
 								break
