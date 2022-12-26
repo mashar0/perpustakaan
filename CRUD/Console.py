@@ -1,8 +1,10 @@
 from os import system
 from sys import platform
 from .Database import *
+from string import ascii_lowercase, ascii_uppercase
 
 class Pekerja_perpustakaan:
+	
 	__banner = """Selamat Datang Di Perpustakaan . . .
 Ada Yang Bisa Saya Bantu ?
 1 . Lihat Buku
@@ -15,6 +17,9 @@ Ada Yang Bisa Saya Bantu ?
 	def __init__(self, masukan_nama):
 		self.banner = Pekerja_perpustakaan.__banner
 		self.nama = masukan_nama
+
+	def check_kosong():
+		pass
 
 	def clear(self):
 		if (platform == "linux") or (platform == "linux2"): system("clear")
