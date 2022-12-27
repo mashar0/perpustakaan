@@ -1,6 +1,6 @@
 from os import rename, system
 Nama_database = "DATA/KumpulanBuku.txt"
-Nama_sample_start = "DATA/Sample.html"
+Nama_sample_start = "DATA/SampleStart.html"
 Nama_html = "DATA/KumpulanBuku.html"
 
 def Initialize(): 
