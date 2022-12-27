@@ -11,7 +11,8 @@ Ada Yang Bisa Saya Bantu ?
 2 . Tambah Buku
 3 . Perbaharui Informasi Buku
 4 . Buang Buku
-5 . Keluar Program
+5 . HTML (beta)
+6 . Keluar Program
 	"""
 
 	def __init__(self, masukan_nama):
@@ -36,7 +37,7 @@ Ada Yang Bisa Saya Bantu ?
 	def table_buku(self, message):
 		self.clear()
 		no = 0
-		data_lihat_buku = lihat_buku()
+		data_lihat_buku = lihat_buku_console()
 		print(f"{message}\n\nTersedia {len(data_lihat_buku)} Buku")
 		print('='*99)
 		print(f"| {'No':<4}| {'Judul':<20} | {'Pengarang':<20} | {'Tahun Terbit':<20} | {'Jumlah Halaman':<20} |")
@@ -48,8 +49,8 @@ Ada Yang Bisa Saya Bantu ?
 		print('='*99)
 
 	def check_kosong(self, kata):
-		kata_ascii, list_kata = ascii_lowercase + ascii_uppercase, []
-		for a in kata_ascii: list_kata.append(a)
+		kata_ascii, list_kata = ascii_lowercase + ascii_uppercase + "1234567890", []
+		for a in kata_ascii: list_kata.append(a) 
 		while True:
 			try:
 				for b in range(len(list_kata)):
@@ -102,7 +103,7 @@ Ada Yang Bisa Saya Bantu ?
 				except:
 					input("Masukan Angka ! ")
 					continue 
-			tambah_buku(judul, pengarang, tahun_terbit, jumlah_halaman)
+			tambah_buku_console(judul, pengarang, tahun_terbit, jumlah_halaman)
 			print("\nBuku Sudah Di Tambahkan")
 			tambah_lagi = str(input("Tambah Buku Lagi ? [Y/n] : "))
 			if (tambah_lagi == "y") or (tambah_lagi == "Y"): continue 
@@ -111,7 +112,7 @@ Ada Yang Bisa Saya Bantu ?
 	def mau_update_buku(self):
 		while True:
 			while True:
-				data_lihat_buku = lihat_buku()
+				data_lihat_buku = lihat_buku_console()
 				self.table_buku("Update Buku")
 				print("Input 0 Untuk Selesai\n")
 				try:
@@ -122,7 +123,7 @@ Ada Yang Bisa Saya Bantu ?
 				except: continue
 			if (no_buku_yg_akan_diubah == 0): break
 			while True:
-				data_lihat_buku = lihat_buku()
+				data_lihat_buku = lihat_buku_console()
 				data_lihat_buku_list = data_lihat_buku[no_buku_yg_akan_diubah-1].split("|")
 				self.clear()
 				print(f"Ubah Buku No {no_buku_yg_akan_diubah}")
@@ -142,7 +143,7 @@ Ada Yang Bisa Saya Bantu ?
 							judul_baru = str(input("Masukan Judul Baru\n> "))
 							if (self.check_kosong(judul_baru)):
 								data_judul_baru = f"{judul_baru:<250}|"
-								update_buku(no_buku=no_buku_yg_akan_diubah ,posisi=0 , data_baru=data_judul_baru)
+								update_buku_console(no_buku=no_buku_yg_akan_diubah ,posisi=0 , data_baru=data_judul_baru)
 								break
 							else:
 								input("Harap Masukan Judul ! ")
@@ -153,7 +154,7 @@ Ada Yang Bisa Saya Bantu ?
 							pengarang_baru = str(input("Masukan Nama Pengarang Yang Baru\n> ")) 
 							if (self.check_kosong(pengarang_baru)):
 								data_pengarang_baru = f"{pengarang_baru:<250}|"
-								update_buku(no_buku=no_buku_yg_akan_diubah ,posisi=251 , data_baru=data_pengarang_baru)
+								update_buku_console(no_buku=no_buku_yg_akan_diubah ,posisi=251 , data_baru=data_pengarang_baru)
 								break
 							else:
 								input("Harap Masukan Nama Pengarang ! ")
@@ -168,7 +169,7 @@ Ada Yang Bisa Saya Bantu ?
 								input("Masukan Angka ! ")
 								continue
 						data_tahun_terbit_baru = f"{tahun_terbit_baru:<250}|"
-						update_buku(no_buku=no_buku_yg_akan_diubah ,posisi=502 , data_baru=data_tahun_terbit_baru) 
+						update_buku_console(no_buku=no_buku_yg_akan_diubah ,posisi=502 , data_baru=data_tahun_terbit_baru) 
 					elif (bagian_yang_akan_di_ubah == 4):
 						while True:
 							self.clear()
@@ -179,7 +180,7 @@ Ada Yang Bisa Saya Bantu ?
 								input("Masukan Angka ! ")
 								continue
 						data_halaman_baru = f"{halaman_baru:<250}\n"
-						update_buku(no_buku=no_buku_yg_akan_diubah ,posisi=753 , data_baru=data_halaman_baru)
+						update_buku_console(no_buku=no_buku_yg_akan_diubah ,posisi=753 , data_baru=data_halaman_baru)
 						continue
 					elif (bagian_yang_akan_di_ubah == 5): break
 					else: continue
@@ -187,7 +188,7 @@ Ada Yang Bisa Saya Bantu ?
 
 	def mau_hapus_buku(self):
 		while True:
-			data_lihat_buku = lihat_buku()
+			data_lihat_buku = lihat_buku_console()
 			self.table_buku("Hapus Buku")
 			print("Input 0 Untuk Selesai\n")
 			try:
@@ -195,7 +196,7 @@ Ada Yang Bisa Saya Bantu ?
 				if (no_buku_yang_akan_di_hapus > len(data_lihat_buku)): continue
 				elif (no_buku_yang_akan_di_hapus == 0): break
 				else:
-					if hapus_buku(no_buku=no_buku_yang_akan_di_hapus): 
+					if hapus_buku_console(no_buku=no_buku_yang_akan_di_hapus): 
 						input("Tidak Dapat Menghapus Buku Terakhir ! ")
 					else: continue
 			except: continue
@@ -205,7 +206,8 @@ Ada Yang Bisa Saya Bantu ?
 		elif (kode_bantuan == 2): self.mau_tambah_buku()
 		elif (kode_bantuan == 3): self.mau_update_buku()
 		elif (kode_bantuan == 4): self.mau_hapus_buku()
-		elif (kode_bantuan == 5): return True
+		elif (kode_bantuan == 5): tulis_html()
+		elif (kode_bantuan == 6): return True
 		else: pass
 
 	def minta_bantuan(self):
