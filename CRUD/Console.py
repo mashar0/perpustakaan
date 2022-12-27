@@ -40,7 +40,7 @@ Ada Yang Bisa Saya Bantu ?
 		data_lihat_buku = lihat_buku_console()
 		print(f"{message}\n\nTersedia {len(data_lihat_buku)} Buku")
 		print('='*99)
-		print(f"| {'No':^4}| {'Judul':^20} | {'Pengarang':^20} | {'Tahun Terbit':^20} | {'Jumlah Halaman':^20} |")
+		print(f"| {'No':<4}| {'Judul':<20} | {'Pengarang':<20} | {'Tahun Terbit':<20} | {'Jumlah Halaman':<20} |")
 		print("|" + '~'*97 + "|")
 		for i in data_lihat_buku:
 			iSp = i.split("|")
