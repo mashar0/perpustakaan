@@ -1,5 +1,6 @@
 from os import rename
 Nama_database = "CRUD/KumpulanBuku.txt"
+Nama_html = "CRUD/KumpulanBuku.html"
 
 def Initialize(): 
 	with open(Nama_database, mode="a", encoding="utf-8") as buku: buku.write("")
@@ -27,3 +28,7 @@ def hapus_buku(no_buku):
 				if (i == (no_buku-1)): continue
 				with open("CRUD/temp.txt", mode="a", encoding="utf-8") as files: files.write(isi[i])
 			rename("CRUD/temp.txt", Nama_database)
+
+def lihat_html():
+	with open(Nama_html, mode="w", encoding="utf-8") as file:
+		pass
