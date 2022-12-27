@@ -1,4 +1,4 @@
-from os import rename, system
+from os import rename, system, getcwd
 Nama_database = "DATA/KumpulanBuku.txt"
 Nama_sample_start = "DATA/SampleStart.html"
 Nama_html = "DATA/KumpulanBuku.html"
@@ -61,4 +61,4 @@ def tulis_html():
 		if (lanjut == "y") or (lanjut == "Y"):
 			system("xdg-open DATA/KumpulanBuku.html")
 		else:
-			pass
+			input(f"Lokasi File: {getcwd()}/DATA/KumpulanBuku.html")
