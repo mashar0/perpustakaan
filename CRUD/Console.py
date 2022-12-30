@@ -16,8 +16,7 @@ Ada Yang Bisa Saya Bantu ?
 	"""
 
 	def __init__(self, masukan_nama):
-		self.banner = Pekerja_perpustakaan.__banner
-		self.nama = masukan_nama
+		self.banner, self.nama = Pekerja_perpustakaan.__banner, masukan_nama
 
 	def clear(self):
 		if (platform == "linux") or (platform == "linux2"): system("clear")
@@ -26,8 +25,7 @@ Ada Yang Bisa Saya Bantu ?
     
 	def ada_yang_bisa_dibantu(self):
 		while True:
-			self.clear()
-			print(f"Hallo Nama Saya {self.nama}\n{self.banner}")
+			self.clear(); print(f"Hallo Nama Saya {self.nama}\n{self.banner}")
 			try:
 				no_bantuan = int(input("> "))
 				if (no_bantuan <= 0) or (no_bantuan > 6): continue  
@@ -36,15 +34,13 @@ Ada Yang Bisa Saya Bantu ?
 
 	def table_buku(self, message):
 		self.clear()
-		no = 0
-		data_lihat_buku = lihat_buku_console()
+		no, data_lihat_buku = 0, lihat_buku_console()
 		print(f"{message}\n\nTersedia {len(data_lihat_buku)} Buku")
 		print('='*99)
 		print(f"| {'No':<4}| {'Judul':<20} | {'Pengarang':<20} | {'Tahun Terbit':<20} | {'Jumlah Halaman':<20} |")
 		print("|" + '~'*97 + "|")
 		for i in data_lihat_buku:
-			iSp = i.split("|")
-			no += 1
+			iSp = i.split("|"); no += 1
 			print(f"| {no:^4}| {iSp[0]:.20} | {iSp[1]:.20} | {iSp[2]:.20} | {iSp[3]:.20} |")
 		print('='*99)
 
@@ -59,50 +55,34 @@ Ada Yang Bisa Saya Bantu ?
 			except: return False
 
 	def mau_lihat_buku(self):
-		self.table_buku("Lihat Buku"), input("Enter Untuk Melanjutkan ")
+		self.table_buku("Lihat Buku"); input("Enter Untuk Melanjutkan ")
 
 	def mau_tambah_buku(self):
 		while True:
 			while True:
-				self.clear()
-				print("Tambahkan Buku Baru")
+				self.clear(); print("Tambahkan Buku Baru")
 				judul = str(input(f"{'Judul':<15}: "))
 				if (self.check_kosong(judul)): break
-				else:
-					input("Harap Masukan Judul ! ")
-					continue
+				else: input("Harap Masukan Judul ! "); continue
 			while True:
-				self.clear()
-				print("Tambahkan Buku Baru")
+				self.clear(); print("Tambahkan Buku Baru")
 				print(f"{'Judul':<15}: {judul}")
 				pengarang = str(input(f"{'Pengarang':<15}: "))
 				if (self.check_kosong(pengarang)): break  
-				else:
-					input("Harap Masukan Nama Pengarang  ! ")
-					continue
+				else: input("Harap Masukan Nama Pengarang  ! "); continue
 			while True:
-				self.clear()
-				print("Tambahkan Buku Baru")
+				self.clear(); print("Tambahkan Buku Baru")
 				print(f"{'Judul':<15}: {judul}")
 				print(f"{'Pengarang':<15}: {pengarang}")
-				try:
-					tahun_terbit = int(input(f"{'Tahun Terbit':<15}: "))
-					break
-				except:
-					input("Masukan Angka ! ")
-					continue
+				try: tahun_terbit = int(input(f"{'Tahun Terbit':<15}: ")); break
+				except: input("Masukan Angka ! "); continue
 			while True:
-				self.clear()
-				print("Tambahkan Buku Baru")
+				self.clear(); print("Tambahkan Buku Baru")
 				print(f"{'Judul':<15}: {judul}")
 				print(f"{'Pengarang':<15}: {pengarang}")
 				print(f"{'Tahun Terbit':<15}: {tahun_terbit}")
-				try:
-					jumlah_halaman = int(input(f"{'Jumlah Halaman':<15}: "))
-					break
-				except:
-					input("Masukan Angka ! ")
-					continue 
+				try: jumlah_halaman = int(input(f"{'Jumlah Halaman':<15}: ")); break
+				except: input("Masukan Angka ! "); continue 
 			tambah_buku_console(judul, pengarang, tahun_terbit, jumlah_halaman)
 			print("\nBuku Sudah Di Tambahkan")
 			tambah_lagi = str(input("Tambah Buku Lagi ? [Y/n] : "))
@@ -143,42 +123,28 @@ Ada Yang Bisa Saya Bantu ?
 							judul_baru = str(input("Masukan Judul Baru\n> "))
 							if (self.check_kosong(judul_baru)):
 								data_judul_baru = f"{judul_baru:<250}|"
-								update_buku_console(no_buku=no_buku_yg_akan_diubah ,posisi=0 , data_baru=data_judul_baru)
-								break
-							else:
-								input("Harap Masukan Judul ! ")
-								continue
+								update_buku_console(no_buku=no_buku_yg_akan_diubah ,posisi=0 , data_baru=data_judul_baru); break
+							else: input("Harap Masukan Judul ! "); continue
 					elif (bagian_yang_akan_di_ubah == 2):
 						while True:
-							self.clear()
-							pengarang_baru = str(input("Masukan Nama Pengarang Yang Baru\n> ")) 
+							self.clear(); pengarang_baru = str(input("Masukan Nama Pengarang Yang Baru\n> ")) 
 							if (self.check_kosong(pengarang_baru)):
 								data_pengarang_baru = f"{pengarang_baru:<250}|"
 								update_buku_console(no_buku=no_buku_yg_akan_diubah ,posisi=251 , data_baru=data_pengarang_baru)
 								break
-							else:
-								input("Harap Masukan Nama Pengarang ! ")
-								continue
+							else: input("Harap Masukan Nama Pengarang ! "); continue
 					elif (bagian_yang_akan_di_ubah == 3):
 						while True:
 							self.clear()
-							try:
-								tahun_terbit_baru = int(input("Tahun Terbit Baru\n> ")) 
-								break
-							except: 
-								input("Masukan Angka ! ")
-								continue
+							try: tahun_terbit_baru = int(input("Tahun Terbit Baru\n> ")); break
+							except: input("Masukan Angka ! "); continue
 						data_tahun_terbit_baru = f"{tahun_terbit_baru:<250}|"
 						update_buku_console(no_buku=no_buku_yg_akan_diubah ,posisi=502 , data_baru=data_tahun_terbit_baru) 
 					elif (bagian_yang_akan_di_ubah == 4):
 						while True:
 							self.clear()
-							try:
-								halaman_baru = int(input("Masukan Jumlah Halaman Baru\n> "))
-								break 
-							except: 
-								input("Masukan Angka ! ")
-								continue
+							try: halaman_baru = int(input("Masukan Jumlah Halaman Baru\n> ")); break 
+							except: input("Masukan Angka ! "); continue
 						data_halaman_baru = f"{halaman_baru:<250}\n"
 						update_buku_console(no_buku=no_buku_yg_akan_diubah ,posisi=753 , data_baru=data_halaman_baru)
 						continue
